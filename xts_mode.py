@@ -5,8 +5,13 @@ from Crypto.Util.Padding import pad, unpad
 
 class XTSAESMode:
     def __init__(self, key, tweak):
-        self.aes = AES.new(key[:32], AES.MODE_ECB)
-        self.tweak = AES.new(key[32:], AES.MODE_ECB).encrypt(tweak)
+        print("Creating XTS-AES Cipher Object")
+        print("Input key length: " + str(len(key)))
+        print("XTS-AES Key: " + str(key[:16]))
+        print("XTS-AES Tweak: " + str(key[16:]))
+        self.aes = AES.new(key[:16], AES.MODE_ECB)
+        self.tweak = AES.new(key[16:], AES.MODE_ECB).encrypt(tweak)
+        print("============= Successfully Created ===============")
 
     def encrypt(self, data):
         tweak = self.tweak[:]
@@ -61,17 +66,17 @@ class XTSAESMode:
 
     
     def __process_block_encrypt(self, block, tweak):
-        new_block = map(lambda x, y: x ^ y, block, tweak)
+        new_block = b''.join(list(map(lambda x, y: (x ^ y).to_bytes(), block, tweak)))
         new_block = self.aes.encrypt(new_block)
-        new_block = map(lambda x, y: x ^ y, new_block, tweak)
+        new_block = b''.join(list(map(lambda x, y: (x ^ y).to_bytes(), new_block, tweak)))
 
         return bytearray(new_block)
 
 
     def __process_block_decrypt(self, block, tweak):
-        new_block = map(lambda x, y: x ^ y, block, tweak)
+        new_block = b''.join(list(map(lambda x, y: (x ^ y).to_bytes(), block, tweak)))
         new_block = self.aes.decrypt(new_block)
-        new_block = map(lambda x, y: x ^ y, new_block, tweak)
+        new_block = b''.join(list(map(lambda x, y: (x ^ y).to_bytes(), new_block, tweak)))
 
         return bytearray(new_block)
 

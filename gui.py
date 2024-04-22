@@ -16,7 +16,7 @@ class XTSAESApp(tk.Tk):
         self.key_entry_label = tk.Label(text="Key")
         self.key_entry_label.pack()
 
-        self.key_entry = tk.Entry(self, width=50)
+        self.key_entry = tk.Entry(self, width=70)
         self.key_entry.pack(pady=10)
 
         self.tweak_entry_label = tk.Label(text="Tweak")
@@ -90,13 +90,16 @@ class XTSAESApp(tk.Tk):
         print("Key: " + str(key))
         print("Tweak: " + str(tweak))
 
-        if len(key) != 32:
-            print("Invalid key length. Key must be 256 bits (64 hex characters).")
-            return
-
         if not self.input_file:
             print("Please select an input file.")
             return
+        
+        if len(key) != 32:
+            print("Key should be 32 bytes (256 bits). Current length: " + str(len(key)))
+            return
+        
+        if len(tweak) != 16:
+            print("Tweak should be 16 bytes (128 bits). Current length: " + str(len(tweak)))
 
         xts = XTSAESMode(key, tweak)
         with open(self.input_file, "rb") as f:
