@@ -41,8 +41,14 @@ class XTSAESApp(tk.Tk):
         self.input_file = filedialog.askopenfilename()
 
     def encrypt(self):
-        key = bytes.fromhex(self.key_entry.get())
-        tweak = bytes.fromhex(self.tweak_entry.get())
+        key_str = self.key_entry.get()
+        tweak_str = self.tweak_entry.get()
+
+        print("Key str: " + str(key_str))
+        print("Tweak str: " + str(tweak_str))
+
+        key = bytes.fromhex(key_str)
+        tweak = bytes.fromhex(tweak_str)
 
         print("Key: " + str(key))
         print("Tweak: " + str(tweak))
@@ -72,8 +78,14 @@ class XTSAESApp(tk.Tk):
         print(f"Encryption successful. Output file: {output_file}")
 
     def decrypt(self):
-        key = bytes.fromhex(self.key_entry.get())
-        tweak = bytes.fromhex(self.tweak_entry.get())
+        key_str = self.key_entry.get()
+        tweak_str = self.tweak_entry.get()
+
+        print("Key str: " + str(key_str))
+        print("Tweak str: " + str(tweak_str))
+
+        key = bytes.fromhex(key_str)
+        tweak = bytes.fromhex(tweak_str)
 
         print("Key: " + str(key))
         print("Tweak: " + str(tweak))
