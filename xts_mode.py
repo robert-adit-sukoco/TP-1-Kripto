@@ -1,11 +1,7 @@
 from Crypto.Cipher import AES
-from Crypto.Util.Padding import pad
 from Crypto.Random import get_random_bytes
-from Crypto.Cipher import AES
-from Crypto.Cipher import AES
 from Crypto.Protocol.KDF import scrypt
 from Crypto.Util.Padding import pad, unpad
-from Crypto.Random import get_random_bytes
 
 class XTSAESMode:
     def __init__(self, key, tweak):

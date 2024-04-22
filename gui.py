@@ -57,12 +57,12 @@ class XTSAESApp(tk.Tk):
             print("Please select an input file.")
             return
         
-        if len(key) != 64:
-            print("Key should be 64 bytes. Current length: " + str(len(key)))
+        if len(key) != 32:
+            print("Key should be 32 bytes (256 bits). Current length: " + str(len(key)))
             return
         
         if len(tweak) != 16:
-            print("Tweak should be 16 bytes. Current length: " + str(len(tweak)))
+            print("Tweak should be 16 bytes (128 bits). Current length: " + str(len(tweak)))
 
 
         xts = XTSAESMode(key, tweak)
