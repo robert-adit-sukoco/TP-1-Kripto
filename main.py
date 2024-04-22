@@ -1,14 +1,9 @@
-# Function to create GUI
-def create_gui():
-    pass
-    # Implement GUI using Tkinter or PyQt
+from gui import XTSAESApp
 
 # Main function
 def main():
-    pass
-    # Call create_gui() to start GUI
-    # Implement event handlers for encryption and decryption buttons
-    # Call encrypt() or decrypt() based on user input
+    app = XTSAESApp()
+    app.mainloop()
 
 if __name__ == "__main__":
     main()

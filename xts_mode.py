@@ -9,7 +9,7 @@ from Crypto.Random import get_random_bytes
 
 class XTSAESMode:
     def __init__(self, key, tweak):
-        self.aes = AES.new(key[:32], AES.MODE_XTS)
+        self.aes = AES.new(key[:32], AES.MODE_ECB)
         self.tweak = AES.new(key[32:], AES.MODE_ECB).encrypt(tweak)
 
     def encrypt(self, data):
