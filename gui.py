@@ -44,14 +44,8 @@ class XTSAESApp(tk.Tk):
         key_str = self.key_entry.get()
         tweak_str = self.tweak_entry.get()
 
-        print("Key str: " + str(key_str))
-        print("Tweak str: " + str(tweak_str))
-
         key = bytes.fromhex(key_str)
         tweak = bytes.fromhex(tweak_str)
-
-        print("Key: " + str(key))
-        print("Tweak: " + str(tweak))
 
         if not self.input_file:
             print("Please select an input file.")
@@ -81,14 +75,8 @@ class XTSAESApp(tk.Tk):
         key_str = self.key_entry.get()
         tweak_str = self.tweak_entry.get()
 
-        print("Key str: " + str(key_str))
-        print("Tweak str: " + str(tweak_str))
-
         key = bytes.fromhex(key_str)
         tweak = bytes.fromhex(tweak_str)
-
-        print("Key: " + str(key))
-        print("Tweak: " + str(tweak))
 
         if not self.input_file:
             print("Please select an input file.")

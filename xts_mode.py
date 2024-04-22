@@ -6,14 +6,13 @@ from Crypto.Util.Padding import pad, unpad
 class XTSAESMode:
     def __init__(self, key, tweak):
         print("Creating XTS-AES Cipher Object")
-        print("Input key length: " + str(len(key)))
-        print("XTS-AES Key: " + str(key[:16]))
-        print("XTS-AES Tweak: " + str(key[16:]))
-        self.aes = AES.new(key[:16], AES.MODE_ECB)
         self.tweak = AES.new(key[16:], AES.MODE_ECB).encrypt(tweak)
         print("============= Successfully Created ===============")
 
     def encrypt(self, data):
+        if not data:
+            return b''
+        
         tweak = self.tweak[:]
 
         blocks = [data[i:i + 16] for i in range(0, len(data), 16)]
@@ -40,6 +39,9 @@ class XTSAESMode:
 
 
     def decrypt(self, data):
+        if not data:
+            return b''
+        
         tweak = self.tweak[:]
 
         blocks = [data[i:i + 16] for i in range(0, len(data), 16)]
