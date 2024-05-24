@@ -5,6 +5,7 @@ from Crypto.Util.Padding import pad, unpad
 
 class XTSAESMode:
     def __init__(self, key, tweak):
+        self.aes = AES.new(key[:16], AES.MODE_ECB)
         print("Creating XTS-AES Cipher Object")
         self.tweak = AES.new(key[16:], AES.MODE_ECB).encrypt(tweak)
         print("============= Successfully Created ===============")
